@@ -95,7 +95,7 @@ function Navbar({ page = 'home' }: NavbarType) {
                         width={70}
                         height={70}
                     />
-                    <span className="self-center text-xl tracking-wide font-bold whitespace-nowrap text-white uppercase">TOTAL<br></br>PERFORMANCE RATINGS</span>
+                    <span className="self-center text-xl tracking-wide whitespace-nowrap text-white uppercase"><strong>TOTAL</strong><br></br>PERFORMANCE RATINGS</span>
                 </Link>
                 <div className="flex md:order-2">
                     {
@@ -144,7 +144,7 @@ function Navbar({ page = 'home' }: NavbarType) {
                     </button>
                 </div>
                 <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${xsHidden}`} id="navbar-sticky">
-                    <ul className="flex flex-col p-4 md:p-0 mt-0 font-semibold border border-gray-100 rounded-lg  md:flex-row md:space-x-14 md:mt-0 md:border-0 bg-[#001449] md:dark:bg-gray-900 dark:border-gray-700">
+                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-semibold border border-gray-100 rounded-lg  md:flex-row md:space-x-14 md:mt-0 md:border-0 bg-[#001449] md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <Link
                                 href="/"

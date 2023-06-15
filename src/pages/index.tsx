@@ -10,7 +10,7 @@ export default function Home() {
     >
       <Navbar page="home" />
       <div className="row">
-        <p className='font-sans text-[#001449] text-6xl font-bold align-middle mt-64 text-center relative' >{"WELCOME TO TPR'S RACING DASHBOARD"}</p>
+        <p className='font-sans text-[#001449] text-5xl font-bold align-middle mt-64 text-center relative' >{"WELCOME TO TPR'S RACING DASHBOARD"}</p>
       </div>
     </main>
   )
