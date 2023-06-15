@@ -9,8 +9,8 @@ export default function Home() {
       className={`flex min-h-screen flex-col items-center pt-14 pb-0 px-1 ${inter.className}`}
     >
       <Navbar page="home" />
-      <div className="">
-        <p className='font-sans text-[#001449] text-6xl font-bold align-middle mt-64 text-center  relative' >WELCOME TO TPR'S RACING DASHBOARD</p>
+      <div className="row">
+        <p className='font-sans text-[#001449] text-6xl font-bold align-middle mt-64 text-center relative' >{"WELCOME TO TPR'S RACING DASHBOARD"}</p>
       </div>
     </main>
   )
