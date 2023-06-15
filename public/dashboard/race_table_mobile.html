@@ -1,0 +1,514 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script data-memberstack-app="app_cli8rovoe00ei0to2fan354ni" data-memberstack-key="pk_8d71e3671284297b6644"
+		src="https://static.memberstack.com/scripts/v1/memberstack.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/alasql@0.5"></script>
+	<script src="https://unpkg.com/@ag-grid-enterprise/charts/dist/ag-grid-enterprise-charts.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+	<title>Race Table</title>
+	<link href="https://fonts.googleapis.com/css?family=Oswald:400,500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css" />
+</head>
+<style>
+	.raceHeader {
+		height: 2vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		color: white;
+		width: 100%;
+		text-align: center;
+		background-color: #001449;
+		padding: 20px 0px;
+		margin: 0;
+	}
+
+	.raceDetail {
+		height: 2vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		color: white;
+		width: 100%;
+		text-align: center;
+		background-color: #001449;
+		padding: 0px 0px;
+		margin: 0;
+	}
+
+	.raceDesc {
+		height: 2vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		color: white;
+		width: 100%;
+		text-align: center;
+		background-color: #001449;
+		padding: 0px 0px;
+		margin: 0;
+	}
+
+	.buttonContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: auto;
+	}
+
+	body {
+		font-family: 'Oswald', sans-serif;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: #E0E9FF;
+		width: 100%;
+	}
+
+	#homeButton,
+	#autosizeButton {
+		background-color: #E0E9FF;
+		font-family: 'Oswald', sans-serif;
+		color: #001449;
+		padding: 10px 10px;
+		border: none;
+		border-radius: 50px;
+		cursor: pointer;
+		margin: 5px;
+		font-size: 0.8rem;
+		transition: background-color 0.3s;
+	}
+
+	#homeButton:hover,
+	#autosizeButton:hover {
+		background-color: navy;
+		color: white;
+	}
+
+	.ag-theme-alpine {
+		--ag-foreground-color: navy;
+		--ag-background-color: white;
+		--ag-header-foreground-color: white;
+		--ag-header-background-color: #001449;
+		--ag-menu-header-background-color: blue;
+		--ag-menu-header-foreground-color: white;
+		--ag-odd-row-background-color: rgb(0, 0, 0, 0.02);
+		--ag-header-column-resize-handle-color: white;
+		--ag-row-border-width: 0px;
+		--ag-row-border-style: dashed;
+		--ag-row-border-color: rgb(150, 150, 200);
+		--ag-borders: solid 10px;
+		--ag-border-color: white;
+		--ag-popup-shadow: var(--ag-card-shadow);
+		--ag-icon-font-code-menu-color: white;
+		--ag-icon-font-code-tree-closed-color: red;
+		height: 86vh;
+		--at-card-radius: 10px;
+		--ag-card-shadow: 0 10px 40px rgb(83, 0, 106);
+		--ag-popup-shadow: var(--ag-card-shadow);
+		--ag-tab-min-width: 350px;
+		--ag-grid-size: 5px;
+		--ag-header-height: 10px;
+		--ag-header-column-separator-display: block;
+		--ag-header-column-separator-width: 4px;
+		--ag-header-column-separator-color: white;
+	}
+
+	.ag-theme-alpine .ag-cell {
+		font-size: 10px;
+		display: flex;
+		text-align: left;
+		align-items: center;
+	}
+
+	.ag-theme-alpine .ag-header {
+		font-size: 10px;
+		display: flex;
+		text-align: left;
+		align-items: center;
+	}
+
+	.ag-theme-alpine .ag-header-cell {
+		font-size: 10px;
+		display: flex;
+		align-items: center;
+		text-align: left;
+	}
+
+	.ag-theme-alpine .ag-header-cell-label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		text-align: left;
+	}
+
+	.ag-theme-alpine .ag-header-group-cell {
+		font-size: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ag-theme-alpine .ag-menu-header .ag-icon {
+		color: navy;
+	}
+
+	.ag-theme-alpine .ag-icon-menu {
+		color: white;
+	}
+
+	.ag-theme-alpine .ag-icon-asc {
+		color: white;
+	}
+
+	.ag-theme-alpine .ag-icon-desc {
+		color: white;
+	}
+
+	h1 {
+		font-family: 'Oswald', sans-serif;
+		flex: 1;
+		margin: 0;
+		color: white;
+		font-size: 1.5rem;
+		margin: 0px;
+		padding: 10px 20px;
+		text-align: left;
+	}
+
+	h2 {
+		font-family: sans-serif;
+		flex: 1;
+		margin: 0;
+		color: white;
+		font-size: 0.8rem;
+		margin: 10px;
+		padding: 0px 0px;
+		text-align: left;
+	}
+
+	h3 {
+		font-family: sans-serif;
+		flex: 1;
+		margin: 0;
+		color: white;
+		font-size: 0.5rem;
+		margin: 10px;
+		padding: 0px 0px;
+		text-align: left;
+	}
+</style>
+
+<body>
+	<div class="raceHeader">
+		<div class="buttonContainer">
+			<button id="homeButton">Home</button>
+			<button id="autosizeButton">Autosize</button>
+		</div>
+		<h1 id="raceHeader"></h1>
+
+	</div>
+	<div class="raceDetail">
+		<h2 id="raceDetail"></h2>
+	</div>
+
+	<div class="raceDesc">
+		<h3 id="raceDesc"></h3>
+	</div>
+
+	<div id="myGrid" class="ag-theme-alpine"></div>
+
+	<script src="https://unpkg.com/ag-grid-enterprise@23.1.1/dist/ag-grid-enterprise.min.js"></script>
+
+	<script>
+		// Integrate wiht memberstack
+		const memberstack = window.$memberstackDom;
+		// Session Duration
+		// ms_session_duration_days = 100000000 //days
+		// memberstack.getApp().then(({ data: app }) => console.log({ app }))
+		memberstack.getCurrentMember()
+			.then(({ data: member }) => {
+				console.log('member>>>>>>>>>>', member)
+				if (!member || !member.planConnections[0]) {
+					window.location.href = '/posts/pricing';
+				}
+			})
+
+		function isViewAll() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const pathname = window.location.pathname;
+			console.log(pathname); // add this line
+			return urlParams.get('viewAll') === 'true';
+		};
+
+		document.getElementById('homeButton').addEventListener('click', function () {
+			window.location.href = '/dashboard/landing_page.html';
+		});
+
+		function getDetailRowStyle(params) {
+			if (parseInt(params.data.Result) === 1) {
+				return {
+					background: 'green',
+					color: 'white'
+				};
+			}
+		}
+
+		var myIcons = {
+			sortAscending: () => {
+				return 'ASC';
+			},
+			sortDescending: () => {
+				return 'DESC';
+			},
+		};
+
+		// Create the grid options
+		var gridOptions = {
+			defaultColDef: {
+				resizable: true,
+				sortable: true,
+				enablePivot: true,
+				enableFilter: true,
+				filter: true,
+			},
+			enableCharts: true,
+			enableRangeSelection: true,
+			pagination: true,
+			columnDefs: [
+				{
+					headerName: "#",
+					field: "Number",
+					enableRowGroup: true,
+					pivot: true,
+					suppressMenu: true,
+				}, {
+					headerName: "Date",
+					field: "Date",
+					enableRowGroup: true,
+					pivot: true,
+					hide: !isViewAll()
+				}, {
+					headerName: "Silks",
+					field: "Silks",
+					cellRenderer: function (params) {
+						return '<img src="' + params.value + '" width = "20", height = "20">';
+					},
+					suppressMenu: true,
+				}, {
+					headerName: "Meeting",
+					field: "Meeting",
+					enableRowGroup: true,
+					pivot: true,
+					hide: !isViewAll()
+				}, {
+					headerName: "Time",
+					field: "Time24Hour",
+					enableRowGroup: true,
+					pivot: true,
+					hide: !isViewAll()
+				}, {
+					headerName: "Horse",
+					field: "Horse",
+					cellRenderer: 'agGroupCellRenderer',
+					suppressMenu: true,
+				}, {
+					headerName: "TPR Rating",
+					field: "TPR RATING",
+				}, {
+					headerName: "T-1",
+					field: "T-1",
+					columnGroupShow: 'open',
+				}, {
+					headerName: "T-2",
+					field: "T-2",
+					columnGroupShow: 'open',
+				}, {
+					headerName: "T-3",
+					field: "T-3",
+					columnGroupShow: 'open',
+				}, {
+					headerName: "BHA Mark",
+					field: "OR",
+				}, {
+					headerName: "Odds",
+					field: "Odds",
+				}, {
+					headerName: "DistTPR",
+					field: "DistTPR",
+				}, {
+					headerName: "GoingTPR",
+					field: "GoingTPR",
+				}, {
+					headerName: "TrackTPR",
+					field: "TrackTPR",
+				}],
+			masterDetail: true,
+			onGridReady: function (params) {
+				// call autoSizeAllColumns with skipHeader set to false
+				params.api.autoSizeAllColumns(false);
+			},
+			detailRowHeight: 500,
+			rowHeight: 30,
+			headerHeight: 30,
+			// Define a function that returns the row style based on the Result column value
+			detailCellRendererParams: {
+				detailGridOptions: {
+					columnDefs: [{
+						headerName: 'Date',
+						field: 'Date'
+					}, {
+						headerName: 'Meeting',
+						field: 'Meeting'
+					}, {
+						headerName: 'RaceType',
+						field: 'RaceType'
+					}, {
+						headerName: 'Furlongs',
+						field: 'Furlongs'
+					}, {
+						headerName: 'Going',
+						field: 'Going'
+					}, {
+						headerName: 'Result',
+						field: 'Result'
+					}, {
+						headerName: 'TPR',
+						field: 'Rating_Adj'
+					}, {
+						headerName: 'BHA Mark',
+						field: 'OR'
+					}, {
+						headerName: 'Comment',
+						field: 'Comments',
+						width: 300,
+						wrapText: true,
+					},],
+					defaultColDef: {
+						resizable: true,
+						sortable: true,
+						enablePivot: true,
+						filter: true,
+						flex: 1,
+					},
+					onGridReady: function (params) {
+						// call autoSizeAllColumns with skipHeader set to false
+						params.api.autoSizeAllColumns(false);
+					},
+					getRowStyle: getDetailRowStyle,
+					enableRangeSelection: true,
+					enableCharts: true,
+				},
+				getDetailRowData: (params) => {
+					params.successCallback(params.data.Form);
+				},
+			},
+		};
+		// Create the ag-grid
+		var gridDiv = document.querySelector('#myGrid');
+
+		let distance = '';
+		let race_class = '';
+		let rating_band = '';
+		let prize = '';
+		let field_size = '';
+		let going = '';
+		let race_title = '';
+
+		new agGrid.Grid(gridDiv, gridOptions);
+
+		fetch('data.json').then((response) => response.json()).then((data) => {
+			data = data.map(item => {
+				item["TPR Rating"] = isValidNumber(item["TPR Rating"]) ? parseInt(item["TPR Rating"], 10) : item["TPR Rating"];
+				item["T-1"] = isValidNumber(item["T-1"]) ? parseInt(item["T-1"], 10) : item["T-1"];
+				item["T-2"] = isValidNumber(item["T-2"]) ? parseInt(item["T-2"], 10) : item["T-2"];
+				item["T-3"] = isValidNumber(item["T-3"]) ? parseInt(item["T-3"], 10) : item["T-3"];
+				item["OR"] = isValidNumber(item["OR"]) ? parseInt(item["OR"], 10) : item["OR"];
+				item["DistTPR"] = isValidNumber(item["DistTPR"]) ? parseInt(item["DistTPR"], 10) : item["DistTPR"];
+				item["GoingTPR"] = isValidNumber(item["GoingTPR"]) ? parseInt(item["GoingTPR"], 10) : item["GoingTPR"];
+				item["TrackTPR"] = isValidNumber(item["TrackTPR"]) ? parseInt(item["TrackTPR"], 10) : item["TrackTPR"];
+				return item;
+			});
+
+			function isValidNumber(value) {
+				return /^\d+$/.test(value);
+			}
+			const urlParams = new URLSearchParams(window.location.search);
+			const race = urlParams.get('race');
+			const time = urlParams.get('time');
+
+			if (race && time) {
+				const raceData = data.find((item) => item.Meeting === race && item.Time24Hour === time);
+				if (raceData) {
+					race_title = raceData.Race;
+					distance = raceData.Distance;
+					race_class = raceData.Race_Class;
+					rating_band = raceData.Rating_Band;
+					prize = raceData.Prize;
+					field_size = raceData.Field;
+					going = raceData.Going;
+				}
+			}
+
+			const raceHeader = document.createElement('h1');
+			if (isViewAll()) {
+				raceHeader.textContent = `All of Today's Data`;
+			} else {
+				raceHeader.textContent = `${race} - ${time}`;
+			}
+			document.getElementById('raceHeader').appendChild(raceHeader);
+
+			const raceDetail = document.createElement('h2');
+			if (isViewAll()) {
+				raceDetail.textContent = ``;
+			} else {
+				raceDetail.textContent = `${race_title}`;
+			}
+			document.getElementById('raceDetail').appendChild(raceDetail);
+
+			const raceDesc = document.createElement('h3');
+			if (isViewAll()) {
+				raceDesc.textContent = ``;
+			} else {
+				raceDesc.textContent = `${distance} | ${race_class} | ${rating_band} | ${going}`;
+			}
+			document.getElementById('raceDesc').appendChild(raceDesc);
+
+			if (race) {
+				data = data.filter((item) => item.Meeting === race);
+			}
+			if (time) {
+				data = data.filter((item) => item.Time24Hour === time);
+			}
+			gridOptions.api.setRowData(data);
+		});
+
+		gridOptions.api.addEventListener('firstDataRendered', function () {
+			var allColumnIds = [];
+			gridOptions.columnApi.getAllColumns().forEach(function (column) {
+				// Skip if the column is a header
+				if (!column.headerName) {
+					allColumnIds.push(column.colId);
+				}
+			});
+			gridOptions.columnApi.autoSizeColumns(allColumnIds);
+		});
+
+		document.getElementById('autosizeButton').addEventListener('click', function () {
+			var allColumnIds = [];
+			gridOptions.columnApi.getAllColumns().forEach(function (column) {
+				allColumnIds.push(column.colId);
+			});
+			gridOptions.columnApi.autoSizeColumns(allColumnIds);
+		});
+	</script>
+</body>
+
+</html>
