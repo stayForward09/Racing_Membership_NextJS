@@ -5,9 +5,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400);
 
 body {
-    background-color: #f0f3f6;
-    overflow-x: hidden;
-
+    background-color: #E0E9FF;
 }
 
 h1,
@@ -22,6 +20,11 @@ p,
 a {
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";    
     margin: 0px;
+}
+
+.nav > a, .navP{
+    font-family: 'Oswald', sans-serif !important;
+    font-weight: bold;
 }
 
 h3 {
@@ -291,7 +294,7 @@ ul {
 }
 
 .price_page {
-    background: linear-gradient(to top, #000e28, #fff);
+    /* background: linear-gradient(to top, #000e28, #fff); */
     min-height: 93vh;
 }
 

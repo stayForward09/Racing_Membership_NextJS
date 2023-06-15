@@ -62,13 +62,13 @@ const Pricing = () => {
                 <div className='container xl:max-w-6xl xs:min-w-[300px] mt-20'>
                     <div className="flex mt-32">
                         <div className='mx-auto'>
-                            <button className="relative inline-flex items-center font-sans justify-center p-0.5 mb-2 mr-1 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={() => setShowList('rec')}>
-                                <span className={`relative px-5 py-2.5 transition-all ease-in duration-75  ${showList == 'rec' ? 'bg-opacity-0 text-white' : 'bg-white text-black'} dark:bg-gray-900 rounded-md group-hover:bg-opacity-0`}>
+                            <button className="relative inline-flex items-center font-sans justify-center p-0.5 mb-2 mr-1 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br bg-blue-700  hover:text-white dark:text-white focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={() => setShowList('rec')}>
+                                <span className={`relative px-5 py-2.5 transition-all ease-in duration-75  ${showList == 'rec' ? 'bg-opacity-0 text-white' : 'bg-white text-black'} dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 hover:text-white`}>
                                     &nbsp;Recurring&nbsp;
                                 </span>
                             </button>
-                            <button className="relative inline-flex items-center font-sans justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={() => setShowList('one')}>
-                                <span className={`relative px-5 py-2.5 transition-all ease-in duration-75  ${showList == 'one' ? 'bg-opacity-0 text-white' : 'bg-white text-black'} dark:bg-gray-900 rounded-md group-hover:bg-opacity-0`}>
+                            <button className="relative inline-flex items-center font-sans justify-center p-0.5 mb-2 mr-1 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br bg-blue-700  hover:text-white dark:text-white focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={() => setShowList('one')}>
+                                <span className={`relative px-5 py-2.5 transition-all ease-in duration-75  ${showList == 'one' ? 'bg-opacity-0 text-white' : 'bg-white text-black'} dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 hover:text-white`}>
                                     &nbsp;&nbsp;&nbsp;One-off&nbsp;&nbsp;&nbsp;
                                 </span>
                             </button>

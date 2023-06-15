@@ -85,17 +85,17 @@ function Navbar({ page = 'home' }: NavbarType) {
     }
 
     return (
-        <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-            <div className="max-w-full flex flex-wrap items-center justify-between mx-auto px-2 md:px-10">
+        <nav className="bg-[#001449] dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 py-4">
+            <div className="nav max-w-full flex flex-wrap items-center justify-between mx-auto px-2 md:px-4">
                 <Link href="/" className="flex items-center">
                     <Image
                         className=""
-                        src="/logo1.png"
+                        src="/logoo.png"
                         alt="Logo"
                         width={70}
                         height={70}
                     />
-                    <span className="self-center text-xl tracking-widest font-bold whitespace-nowrap dark:text-white text-slate-900 uppercase">Racing</span>
+                    <span className="self-center text-xl tracking-wide font-bold whitespace-nowrap text-white uppercase">TOTAL<br></br>PERFORMANCE RATINGS</span>
                 </Link>
                 <div className="flex md:order-2">
                     {
@@ -144,14 +144,14 @@ function Navbar({ page = 'home' }: NavbarType) {
                     </button>
                 </div>
                 <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${xsHidden}`} id="navbar-sticky">
-                    <ul className="flex flex-col p-4 md:p-0 mt-0 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-14 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <ul className="flex flex-col p-4 md:p-0 mt-0 font-semibold border border-gray-100 rounded-lg  md:flex-row md:space-x-14 md:mt-0 md:border-0 bg-[#001449] md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <Link
                                 href="/"
-                                className="group transition-colors text-slate-400"
+                                className="group transition-colors text-white"
                                 rel="noopener noreferrer"
                             >
-                                <p className={`font-sans uppercase font-medium hover:text-slate-600 ${page == 'home' && 'text-slate-900'}`}>
+                                <p className={`navP uppercase font-semibold hover:text-slate-400 ${page == 'home' && 'text-slate-400'}`}>
                                     Home
                                 </p>
                             </Link>
@@ -159,14 +159,14 @@ function Navbar({ page = 'home' }: NavbarType) {
                         <li>
                             <Link
                                 href="#"
-                                className="group transition-colors text-slate-400"
+                                className="group transition-colors text-white"
                                 rel="noopener noreferrer" onClick={() => {
                                     console.log('----------->>>', member)
                                     if (!member || !member.planConnections[0]) window.location.replace('/posts/pricing')
                                     else window.location.replace('/dashboard/landing_page.html')
                                 }}
                             >
-                                <p className={`font-sans uppercase font-medium hover:text-slate-600 ${page == 'dashbord' && 'text-slate-900'}`}>
+                                <p className={`navP uppercase font-semibold hover:text-slate-400 ${page == 'dashbord' && 'text-slate-400'}`}>
                                     Dashbord
                                 </p>
                             </Link>
@@ -174,10 +174,10 @@ function Navbar({ page = 'home' }: NavbarType) {
                         <li>
                             <Link
                                 href="/posts/pricing"
-                                className="group transition-colors text-slate-400"
+                                className="group transition-colors text-white"
                                 rel="noopener noreferrer"
                             >
-                                <p className={`font-sans uppercase font-medium hover:text-slate-600 ${page == 'pricing' && 'text-slate-900'}`}>
+                                <p className={`navP uppercase font-semibold hover:text-slate-400 ${page == 'pricing' && 'text-slate-400'}`}>
                                     Pricing
                                 </p>
                             </Link>
@@ -185,7 +185,7 @@ function Navbar({ page = 'home' }: NavbarType) {
                         <li>
                             <Link
                                 href="#"
-                                className="group transition-colors text-slate-400"
+                                className="group transition-colors text-white"
                                 rel="noopener noreferrer" onClick={() => {
                                     console.log('----------->>>', member)
                                     if (!member) openModal({
@@ -206,7 +206,7 @@ function Navbar({ page = 'home' }: NavbarType) {
                                     }
                                 }}
                             >
-                                <p className={`font-sans uppercase font-medium hover:text-slate-600 ${page == 'account' && 'text-slate-900'}`}>
+                                <p className={`navP uppercase font-semibold hover:text-slate-400 ${page == 'account' && 'text-slate-400'}`}>
                                     Account
                                 </p>
                             </Link>
